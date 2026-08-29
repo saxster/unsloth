@@ -3,6 +3,8 @@ name: Publish Desktop Release
 # Manual dispatch only: sharing release-desktop.yml's concurrency group, a publish-fired
 # run stalls the desktop build queued behind it -- and predates any bundles anyway.
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
     inputs:
       release_tag:
