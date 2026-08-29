@@ -33,14 +33,6 @@
 name: Core
 
 on:
-  pull_request:
-    paths:
-      - 'unsloth/**'
-      - 'unsloth_cli/**'
-      - 'studio/**'
-      - 'tests/**'
-      - 'pyproject.toml'
-      - '.github/workflows/consolidated-tests-ci.yml'
   push:
     branches: [main]
     paths:
