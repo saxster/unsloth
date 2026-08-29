@@ -33,8 +33,6 @@ name: Local Agent Guides CI
 on:
   # Off-peak weekly, deliberately a NON-:00 minute to dodge the top-of-hour
   # GitHub-hosted-runner stampede.
-  schedule:
-    - cron: '37 7 * * 1'
   workflow_dispatch:
   # This workflow's cache saves are gated to refs/heads/main, and unlike the
   # other ten workflows in that change it had no main-ref trigger at all, so
@@ -63,26 +61,6 @@ on:
       - '.github/scripts/agent-guides-drive.sh'
       - '.github/scripts/ci-connect-prompt.txt'
       - '.github/scripts/ci-min-system-prompt.txt'
-  pull_request:
-    paths:
-      - 'unsloth_cli/**'
-      - 'studio/backend/routes/**'
-      # Contracts this workflow asserts that live outside routes/**: the
-      # /api/health endpoint, the llama-server KV-cache log behavior, and the
-      # request/response schemas the agent dialects depend on.
-      - 'studio/backend/main.py'
-      - 'studio/backend/core/inference/llama_cpp.py'
-      - 'studio/backend/models/**'
-      - 'install.sh'
-      - '.github/workflows/local-agent-guides-ci.yml'
-      - '.github/actions/install-unsloth-local/action.yml'
-      - '.github/scripts/serve-unsloth-run.sh'
-      - '.github/scripts/assert-prompt-cache.sh'
-      - '.github/scripts/agent-guides-install.sh'
-      - '.github/scripts/agent-guides-drive.sh'
-      - '.github/scripts/ci-connect-prompt.txt'
-      - '.github/scripts/ci-min-system-prompt.txt'
-
 concurrency:
   # The event is part of the group so a scheduled run and a push to main cannot
   # coalesce. Both resolve to refs/heads/main, and the default queue: single keeps
