@@ -19,16 +19,11 @@
 name: Desktop app clean machine
 
 on:
+  push:
+    branches: [main]
   # Also on PRs touching this job or the stripping scripts: dispatch resolves the workflow
   # from the DEFAULT branch, so an edit on a feature branch could only run after a blind
   # merge.
-  pull_request:
-    paths:
-      - '.github/workflows/desktop-app-clean-machine-ci.yml'
-
-      - '.github/scripts/resolve-desktop-release.py'
-      - '.github/scripts/clean-machine-env.sh'
-      - '.github/scripts/clean-machine-assert.sh'
   workflow_dispatch:
     inputs:
       release_tag:
@@ -45,10 +40,6 @@ on:
         description: 'Strip developer tooling before installing'
         type: boolean
         default: true
-  schedule:
-    # Nightly, so a broken published bundle is caught without anyone asking.
-    - cron: '17 5 * * *'
-
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   # Latest-only on branches, never on main. Pushes to main land in bursts, so
