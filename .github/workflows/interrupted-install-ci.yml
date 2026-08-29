@@ -17,35 +17,8 @@
 name: Interrupted install recovery
 
 on:
-  pull_request:
-    paths:
-      - 'install.sh'
-      - 'install.ps1'
-      - 'studio/setup.sh'
-      - 'studio/setup.ps1'
-      - 'studio/install_python_stack.py'
-      - 'studio/src-tauri/src/install.rs'
-      - 'studio/src-tauri/src/preflight.rs'
-      - 'studio/src-tauri/src/preflight/**'
-      - 'unsloth_cli/commands/studio.py'
-      # Every leg installs the checkout with `--local`, so this file decides the console
-      # script and the core deps: `-h` and `desktop-capabilities` only survive a torn
-      # install because typer/click/rich are declared here, not in an extra.
-      - 'pyproject.toml'
-      # studio_install_ok and verify-install, the decisions the probe asserts on, live here,
-      # so an install_state() accepting a missing manifest would merge unrun.
-      - 'unsloth_cli/_studio_deps.py'
-      - 'studio/install_manifest.py'
-      # The requirement files are the phases: studio.txt declares structlog, whose absence
-      # IS the reported false-ready bug, so moving a package between them changes every
-      # interrupted state.
-      - 'studio/backend/requirements/**'
-      # `interrupt*-install*` would match the .sh / .ps1 but NOT the underscored probe
-      # (`*` never matches `/`, and a literal `-install` follows), so list all three.
-      - '.github/scripts/interrupt-install.sh'
-      - '.github/scripts/interrupt-install.ps1'
-      - '.github/scripts/interrupted_install_probe.py'
-      - '.github/workflows/interrupted-install-ci.yml'
+  push:
+    branches: [main]
   workflow_dispatch:
 
 concurrency:
