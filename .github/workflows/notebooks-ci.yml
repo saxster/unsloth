@@ -20,21 +20,8 @@
 name: Notebooks CI
 
 on:
-  pull_request:
-    paths:
-      - 'unsloth/**'
-      - 'scripts/notebook_validator.py'
-      - 'scripts/notebook_to_python.py'
-      - 'scripts/data/colab_pip_freeze.gpu.txt'
-      - 'scripts/data/colab_to_cpu_pin.json'
-      - 'tests/notebooks/**'
-      - 'tests/_zoo_aggressive_cuda_spoof.py'
-      - '.github/workflows/notebooks-ci.yml'
-  schedule:
-    # Daily 06:17 UTC. Catches Colab preinstall bumps (the upstream image
-    # is rebuilt roughly weekly) without us waiting on a PR. Off the
-    # :00/:30 fleet-collision spots.
-    - cron: '17 6 * * *'
+  push:
+    branches: [main]
   workflow_dispatch:
     inputs:
       notebooks_ref:
