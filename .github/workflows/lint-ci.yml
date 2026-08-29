@@ -26,7 +26,6 @@
 name: Lint CI
 
 on:
-  pull_request:
   push:
     branches: [main]
 
