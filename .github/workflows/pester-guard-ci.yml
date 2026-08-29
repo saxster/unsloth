@@ -13,10 +13,8 @@
 name: Pester guard
 
 on:
-  pull_request:
-    paths:
-      - 'tests/studio/test_pester_bootstrap_hardening.py'
-      - '.github/workflows/pester-guard-ci.yml'
+  push:
+    branches: [main]
   workflow_dispatch:
 
 concurrency:
