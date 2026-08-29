@@ -55,11 +55,8 @@
 name: Security audit
 
 on:
-  pull_request:
   push:
     branches: [main]
-  schedule:
-    - cron: '13 4 * * *'   # 04:13 UTC daily, off the cron rush
   workflow_dispatch:
 
 concurrency:
