@@ -56,6 +56,8 @@ name: CI capacity
 # repository's own GITHUB_TOKEN, against a list committed in this repository.
 
 on:
+  push:
+    branches: [main]
   repository_dispatch:
     types: [ci-pause, ci-resume]
 
@@ -89,9 +91,6 @@ on:
   # measured in how long CI stays off. Twice an hour is noise in the Actions
   # tab that buys a bounded worst case; if that trade stops being worth it,
   # lower the rate and raise MAX_DISABLED_MINUTES to match, never just one.
-  schedule:
-    - cron: '7,37 * * * *'
-
 permissions:
   actions: write   # cancel / disable / enable, this repository only
   contents: read
