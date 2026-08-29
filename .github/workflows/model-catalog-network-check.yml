@@ -23,8 +23,8 @@
 name: Model catalog network check
 
 on:
-  schedule:
-    - cron: '19 6 * * *'   # 06:19 UTC daily, off the cron rush
+  push:
+    branches: [main]
   workflow_dispatch:
 
 concurrency:
