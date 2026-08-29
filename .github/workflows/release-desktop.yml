@@ -1,6 +1,8 @@
 name: Release Desktop App
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
     # Both version inputs are free text in the dispatch UI, and studio_version
     # alone decides the release tag, all nine asset filenames and the updater
